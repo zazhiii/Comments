@@ -1,6 +1,7 @@
 package com.zazhi.utils;
 
 import com.zazhi.dto.UserDTO;
+import com.zazhi.entity.User;
 
 public class UserHolder {
     private static final ThreadLocal<UserDTO> tl = new ThreadLocal<>();
