@@ -55,6 +55,8 @@ public class LoginIntercepter implements HandlerInterceptor {
         // upd: 从 ThreadLocal 中获取用户信息判断是否登录
         UserDTO user = UserHolder.getUser();
         if (user == null) {
+            System.out.println("请求路径: " + request.getRequestURI());
+
             response.setStatus(401);
             return false;
         }

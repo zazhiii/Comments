@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
@@ -30,7 +31,11 @@ public class MvcConfig implements WebMvcConfigurer {
                         "upload/**",
                         "blog/hot",
                         "/user/login",
-                        "/user/code"
+                        "/user/code",
+                        // knif4j
+                        "/doc.html",
+                        "/v3/**",
+                        "/error"
                 ).order(1);
 
         // 刷新 Token

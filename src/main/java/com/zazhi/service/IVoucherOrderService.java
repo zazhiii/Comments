@@ -1,5 +1,6 @@
 package com.zazhi.service;
 
+import com.zazhi.dto.Result;
 import com.zazhi.entity.VoucherOrder;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -13,4 +14,17 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IVoucherOrderService extends IService<VoucherOrder> {
 
+    /**
+     * 秒杀代金券
+     * @param voucherId 代金券ID
+     * @return
+     */
+    Result seckillVoucher(Long voucherId);
+
+    /**
+     * 创建代金券订单
+     * @param voucherId 代金券ID
+     * @return
+     */
+    Result createVoucherOrder(Long voucherId);
 }
