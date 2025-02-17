@@ -55,7 +55,6 @@ public class VoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vou
 
         Long userId = UserHolder.getUser().getId();
 //        synchronized (userId.toString().intern()) {
-
         ILock lock = new SimpleRedisLock("seckill_order:" + userId, stringRedisTemplate);
         boolean isLock = lock.lock(5);
         if (!isLock) { // 同一个用户的请求，只有一个能拿到锁
@@ -69,8 +68,6 @@ public class VoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vou
             // 释放锁
             lock.unlock();
         }
-
-
 //        }
     }
 
