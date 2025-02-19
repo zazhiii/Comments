@@ -109,8 +109,6 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements IB
                 stringRedisTemplate.opsForZSet().remove(BLOG_LIKED_KEY + id, String.valueOf(userId));
             }
         }
-
-
         return Result.ok();
     }
 

@@ -1,28 +1,28 @@
 package com.zazhi.controller;
 
 
+import cn.hutool.core.bean.BeanUtil;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zazhi.dto.LoginFormDTO;
 import com.zazhi.dto.Result;
 import com.zazhi.dto.UserDTO;
+import com.zazhi.entity.Blog;
 import com.zazhi.entity.User;
 import com.zazhi.entity.UserInfo;
+import com.zazhi.service.IBlogService;
 import com.zazhi.service.IUserInfoService;
 import com.zazhi.service.IUserService;
 import com.zazhi.utils.UserHolder;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
-/**
- * <p>
- * 前端控制器
- * </p>
- *
- * @author 虎哥
- * @since 2021-12-22
- */
+import static com.zazhi.utils.SystemConstants.MAX_PAGE_SIZE;
+
 @Slf4j
 @RestController
 @RequestMapping("/user")
@@ -33,6 +33,9 @@ public class UserController {
 
     @Resource
     private IUserInfoService userInfoService;
+
+    @Autowired
+    private IBlogService blogService;
 
     /**
      * 发送手机验证码
@@ -80,4 +83,21 @@ public class UserController {
         // 返回
         return Result.ok(info);
     }
+
+
+// UserController 根据id查询用户
+
+    @GetMapping("/{id}")
+    public Result queryUserById(@PathVariable("id") Long userId){
+        // 查询详情
+        User user = userService.getById(userId);
+        if (user == null) {
+            return Result.ok();
+        }
+        UserDTO userDTO = BeanUtil.copyProperties(user, UserDTO.class);
+        // 返回
+        return Result.ok(userDTO);
+    }
+
+
 }
