@@ -1,5 +1,6 @@
 package com.zazhi.service;
 
+import com.zazhi.dto.Result;
 import com.zazhi.entity.Blog;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -13,4 +14,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IBlogService extends IService<Blog> {
 
+    Result queryHotBlog(Integer current);
+
+    Result queryById(Long id);
 }
